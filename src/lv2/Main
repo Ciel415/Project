@@ -1,0 +1,33 @@
+package lv2;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Calculator calculator = new Calculator();
+
+        while (true) {
+            System.out.print("첫 번째 숫자를 입력하세요: ");
+            int num1 = scanner.nextInt();
+
+            System.out.print("두 번째 숫자를 입력하세요: ");
+            int num2 = scanner.nextInt();
+
+            System.out.print("사칙연산 기호를 입력하세요 (+, -, *, /): ");
+            char op = scanner.next().charAt(0);
+
+            int result = calculator.calculate(num1, num2, op);
+            System.out.println("결과: " + result);
+
+            System.out.println("현재 저장된 결과 목록: " + calculator.getResults());
+
+            System.out.print("더 계산하시겠습니까? (exit 입력 시 종료): ");
+            String input = scanner.next();
+            if (input.equalsIgnoreCase("exit")) {
+                System.out.println("계산기를 종료합니다.");
+                break;
+            }
+        }
+    }
+}
