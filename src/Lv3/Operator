@@ -1,0 +1,27 @@
+package lv3;
+
+public enum Operator {
+    ADD('+'),
+    SUBTRACT('-'),
+    MULTIPLY('*'),
+    DIVIDE('/');
+
+    private final char symbol;
+
+    Operator(char symbol) {
+        this.symbol = symbol;
+    }
+
+    public char getSymbol() {
+        return symbol;
+    }
+
+    public static Operator fromChar(char op) {
+        for (Operator type : Operator.values()) {
+            if (type.getSymbol() == op) {
+                return type;
+            }
+        }
+        throw new IllegalArgumentException("오류: 잘못된 연산자입니다!");
+    }
+}
