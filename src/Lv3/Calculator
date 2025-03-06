@@ -1,0 +1,51 @@
+package lv3;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Calculator<T extends Number> {
+
+    private final List<Double> results;
+
+    public Calculator() {
+        results = new ArrayList<>();
+    }
+    
+    public double calculate(T num1, T num2, Operator op) {
+        double value1 = num1.doubleValue();
+        double value2 = num2.doubleValue();
+        double result = 0.0;
+
+        switch (op) {
+            case ADD:
+                result = value1 + value2;
+                break;
+            case SUBTRACT:
+                result = value1 - value2;
+                break;
+            case MULTIPLY:
+                result = value1 * value2;
+                break;
+            case DIVIDE:
+                if (value2 == 0) {
+                    throw new ArithmeticException("오류: 0으로 나눌 수 없습니다!");
+                }
+                result = value1 / value2;
+                break;
+        }
+
+        results.add(result);
+        return result;
+    }
+
+    public List<Double> getResults() {
+        return new ArrayList<>(results);
+    }
+    
+    public List<Double> getResultsGreaterThan(double threshold) {
+        return results.stream()
+                .filter(result -> result > threshold)
+                .collect(Collectors.toList());
+    }
+}
